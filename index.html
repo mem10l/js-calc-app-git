@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+</html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator
+</title>
+</head>
+<body>
+<h1>Kalkulators</h1>
+<input type="text" id="num1">
+<input type="text" id="operator">
+<input type="text" id="num2">
+<button id="btn">Rēķināt</button>
+<div id="output"></div>
+<script>
+    const num1Input = document.getElementById("num1")
+    const operatorInput = document.getElementById("operator")
+    const num2Input = document.getElementById("num2")
+    const btnInput = document.getElementById("btn")
+    const outputContainer = document.getElementById("output")
+btnInput.addEventListener("click", handleClick)
+    function handleClick(){
+let num1Value = (num1Input.value);
+let num2Value = (num2Input.value);
+let operatorValue = (operatorInput.value);
+
+let result;
+switch (operatorValue) {
+    case "+":
+        result = num1Value + num2Value;
+        break;
+    case "-":
+        result = num1Value - num2Value;
+        break;
+    case "*":
+        result = num1Value * num2Value;
+        break;
+    case "/":
+        result = num1Value / num2Value;
+        break;
+        
+    default:
+        break;
+}
+outputContainer.innerHTML = result;
+}
+</script>
+</body>
+</html>
