@@ -26,25 +26,33 @@ let num1Value = parseFloat(num1Input.value);
 let num2Value = parseFloat(num2Input.value);
 let operatorValue = (operatorInput.value);
 
-let result;
-switch (operatorValue) {
+let result = calculateResult(num1Value, num2Value, operatorValue)
+
+
+
+outputContainer.innerHTML = result;
+}
+
+function calculateResult(n1, n2, op) {
+  let result;  
+  switch (op) {
     case "+":
-        result = num1Value + num2Value;
+        result = n1 + n2;
         break;
     case "-":
-        result = num1Value - num2Value;
+        result = n1 - n2;
         break;
     case "*":
-        result = num1Value * num2Value;
+        result = n1 * n2;
         break;
     case "/":
-        result = num1Value / num2Value;
+        result = n1 / n2;
         break;
         
     default:
         break;
 }
-outputContainer.innerHTML = result;
+return result;
 }
 </script>
 </body>
