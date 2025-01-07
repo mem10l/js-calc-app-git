@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-</html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculator
-</title>
+<title>Calculator</title>
 </head>
 <body>
 <h1>Kalkulators</h1>
@@ -14,46 +12,68 @@
 <input type="text" id="num2">
 <button id="btn">Rēķināt</button>
 <div id="output"></div>
+
 <script>
-    const num1Input = document.getElementById("num1")
-    const operatorInput = document.getElementById("operator")
-    const num2Input = document.getElementById("num2")
-    const btnInput = document.getElementById("btn")
-    const outputContainer = document.getElementById("output")
-btnInput.addEventListener("click", handleClick)
-    function handleClick(){
-let num1Value = parseFloat(num1Input.value);
-let num2Value = parseFloat(num2Input.value);
-let operatorValue = (operatorInput.value);
+    const num1Input = document.getElementById("num1");
+    const operatorInput = document.getElementById("operator");
+    const num2Input = document.getElementById("num2");
+    const btnInput = document.getElementById("btn");
+    const outputContainer = document.getElementById("output");
 
-let result = calculateResult(num1Value, num2Value, operatorValue)
+    btnInput.addEventListener("click", handleClick);
 
+    function handleClick() {
+       
+        let num1Value = parseFloat(num1Input.value);
+        let num2Value = parseFloat(num2Input.value);
+        let operatorValue = operatorInput.value.trim();
+       
+        let errors = validateUserInput(num1Value, num2Value, operatorValue);
 
+        if (errors.length > 0) {
+            outputContainer.innerHTML = `<p style="color: red;">${errors.join("<br>")}</p>`;
+            return;
+        }
 
-outputContainer.innerHTML = result;
-}
+        let result = calculateResult(num1Value, num2Value, operatorValue);
 
-function calculateResult(n1, n2, op) {
-  let result;  
-  switch (op) {
-    case "+":
-        result = n1 + n2;
-        break;
-    case "-":
-        result = n1 - n2;
-        break;
-    case "*":
-        result = n1 * n2;
-        break;
-    case "/":
-        result = n1 / n2;
-        break;
-        
-    default:
-        break;
-}
-return result;
-}
+        outputContainer.innerHTML = result;
+    }
+
+    function calculateResult(n1, n2, op) {
+        let result;
+        switch (op) {
+            case "+":
+                result = n1 + n2;
+                break;
+            case "-":
+                result = n1 - n2;
+                break;
+            case "*":
+                result = n1 * n2;
+                break;
+            case "/":
+                result = n1 / n2;
+                break;
+            default:
+                return;
+        }
+        return result;
+    }
+
+    function validateUserInput(num1, num2, operator) {
+        let errors = [];
+        if (isNaN(num1)) {
+            errors.push("Pirmais skaitlis nav pareizs");
+        }
+        if (isNaN(num2)) {
+            errors.push("Otrais skaitlis nav pareizs");
+        }
+        if (!["+", "-", "*", "/"].includes(operator)) {
+            errors.push("Operācija nav derīga");
+        }
+        return errors;
+    }
 </script>
 </body>
 </html>
