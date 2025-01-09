@@ -6,11 +6,19 @@
 <title>Calculator</title>
 </head>
 <body>
+
 <h1>Kalkulators</h1>
+
 <input type="text" id="num1">
+
 <input type="text" id="operator">
+
 <input type="text" id="num2">
+
 <button id="btn">Rēķināt</button>
+
+<button id="clear">Notīrīt lauku</button>
+
 <div id="output" style="color: green;"></div>
 
 <script>
@@ -19,6 +27,14 @@
     const num2Input = document.getElementById("num2");
     const btnInput = document.getElementById("btn");
     const outputContainer = document.getElementById("output");
+    document.getElementById('clear').addEventListener('click', clearAll)
+    function clearAll(clear) {
+    
+            const inputs = document.querySelectorAll('#num1, #operator, #num2');
+            inputs.forEach(input => input.value = '');
+
+            result = output.innerHTML = ''
+   }
 
     btnInput.addEventListener("click", handleClick);
 
